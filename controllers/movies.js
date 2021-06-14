@@ -46,10 +46,10 @@ module.exports.createMovie = (req, res, next) => {
     .catch((err) => next(err));
 };
 module.exports.deleteMovie = (req, res, next) => {
-  Movie.findOneAndRemove({ _id: req.params.movieId, owner: req.movie._id })
+  Movie.findOneAndRemove({ _id: req.params.movieId, owner: req.user._id })
     .then((movie) => {
       if (!movie) {
-        throw new NotFoundError('Нет карточки с таким id');
+        throw new NotFoundError('Нет фильма с таким id');
       }
       res.send(movie);
     })

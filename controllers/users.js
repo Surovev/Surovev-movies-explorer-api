@@ -89,16 +89,22 @@ module.exports.createUser = (req, res, next) => {
 };
 
 module.exports.updateUserProfile = (req, res, next) => {
-  const { name } = req.body;
-  User.findByIdAndUpdate(
-    req.user._id,
-    { name },
-    // Передадим объект опций:
-    {
-      new: true, // обработчик then получит на вход обновлённую запись
-      runValidators: true, // данные будут валидированы перед изменением
-    },
-  )
+  const {
+    email,
+  } = req.body;
+  bcrypt.hash(req.body.password, SOLT_ROUNDS)
+    .then((hash) => User.findByIdAndUpdate(
+      req.user._id,
+      {
+        password: hash,
+        email,
+      },
+      // Передадим объект опций:
+      {
+        new: true, // обработчик then получит на вход обновлённую запись
+        runValidators: true, // данные будут валидированы перед изменением
+      },
+    ))
     .then((user) => {
       if (!user) {
         throw new NotFoundError('Нет пользователя с таким id');

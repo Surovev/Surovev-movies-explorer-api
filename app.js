@@ -10,9 +10,9 @@ const {
 const { requestLogger, errorLogger } = require('./middlewares/Logger');
 const { login, createUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
-const NotFoundError = require('./errors/NotFoundError');
+const LoginError = require('./errors/LoginError');
 
-const { PORT = 3001 } = process.env;
+const { PORT = 3000 } = process.env;
 
 const app = express();
 
@@ -47,13 +47,13 @@ app.use('/users', auth, require('./routes/users'));
 
 app.use('/movies', auth, require('./routes/movies'));
 
+app.use(() => {
+  throw new LoginError('Недостаточно прав');
+});
+
 app.use(errorLogger);
 
 app.use(errors());
-
-app.use(() => {
-  throw new NotFoundError('Страница не найдена');
-});
 
 app.use((err, req, res, next) => {
   const { statusCode = 500, message } = err;
