@@ -9,7 +9,6 @@ const LoginError = require('../errors/LoginError');
 
 module.exports = (req, res, next) => {
   let token = req.headers.authorization;
-  console.log(token);
   if (token) {
     token = token.substring(7);
   }
