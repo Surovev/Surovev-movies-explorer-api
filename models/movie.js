@@ -4,70 +4,70 @@ const mongoose = require('mongoose');
 const movieSchema = new mongoose.Schema({
   country: {
     type: String,
-    required: true,
+    required: true
   },
   director: {
     type: String,
-    required: true,
+    required: true
   },
   duration: {
     type: Number,
-    required: true,
+    required: true
   },
   year: {
     type: String,
-    required: true,
+    required: true
   },
   description: {
     type: String,
-    required: true,
+    required: true
   },
   image: {
     type: String,
     validate: {
-      validator(v) {
+      validator (v) {
         return /^((ftp|http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9\\-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-\\/])*)?/.test(v);
       },
-      message: 'is not a valid url!',
+      message: 'is not a valid url!'
     },
-    required: true,
+    required: true
   },
   trailer: {
     type: String,
     validate: {
-      validator(v) {
+      validator (v) {
         return /^((ftp|http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9\\-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-\\/])*)?/.test(v);
       },
-      message: 'is not a valid url!',
+      message: 'is not a valid url!'
     },
-    required: true,
+    required: true
   },
   thumbnail: {
     type: String,
     validate: {
-      validator(v) {
+      validator (v) {
         return /^((ftp|http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9\\-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-\\/])*)?/.test(v);
       },
-      message: 'is not a valid url!',
+      message: 'is not a valid url!'
     },
-    required: true,
+    required: true
   },
   owner: {
     type: String,
-    required: true,
+    required: true
   },
   movieId: {
-    type: String,
-    required: true,
+    type: Number,
+    required: true
   },
   nameRU: {
     type: String,
-    required: true,
+    required: true
   },
   nameEN: {
     type: String,
-    required: true,
-  },
+    required: true
+  }
 });
 
 // создаём модель и экспортируем её

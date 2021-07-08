@@ -45,7 +45,7 @@ module.exports.createMovie = (req, res, next) => {
     .catch((err) => next(err));
 };
 module.exports.deleteMovie = (req, res, next) => {
-  Movie.findOneAndRemove({ _id: req.params.movieId, owner: req.user._id })
+  Movie.findOneAndRemove({ movieId: req.params.movieId, owner: req.user._id })
     .then((movie) => {
       if (!movie) {
         throw new NotFoundError('Нет фильма с таким id');
