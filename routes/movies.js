@@ -23,7 +23,7 @@ router.post('/', celebrate({
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
     thumbnail: Joi.string().pattern(new RegExp('^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$')).required(),
-    movieId: Joi.string().hex().required(),
+    movieId: Joi.number().required(),
   }),
 }), createMovie);
 router.delete('/:movieId', celebrate({
